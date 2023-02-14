@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "three-d-cloud": {
+      "signature": "8307126ddcc47667c8db034e5650e87f",
+      "file": true
+    }
+  }
+}
