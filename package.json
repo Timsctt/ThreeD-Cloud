@@ -1,11 +1,14 @@
 {
   "name": "three-d-cloud",
-  "description": "",
+  "description": "React module for create a cloud of React Nodes",
   "version": "0.1.0",
   "author": "Timothée Schmitt",
-  "license": "ISC",
+  "license": "MIT",
   "keywords": [
+    "TagCloud",
+    "TypeScript",
     "react",
+    "component",
     "cloud",
     "3d",
     "animation"
@@ -121,6 +124,8 @@
     "lint-staged": "13.1.0",
     "postcss": "8.4.21",
     "prettier": "2.8.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-test-renderer": "18.2.0",
     "release-it": "15.6.0",
     "ts-jest": "29.0.5",
