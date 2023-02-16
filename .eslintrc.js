@@ -43,6 +43,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
     'react/jsx-no-useless-fragment': 'off',
+    'react/react-in-jsx-scope': 'off',
     'react/no-array-index-key': 'off',
     'no-param-reassign': 'off',
     'typescript-sort-keys/interface': 'error',
