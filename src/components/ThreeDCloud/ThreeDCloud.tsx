@@ -1,49 +1,43 @@
-import React, { useState } from 'react';
-import { Fragment } from 'react';
-import { useThreeDCloud } from '../../hooks/useThreeDCloud';
-// import { useThreeDCloud } from "../hooks/useThreeDCloud";
+import React, { useState, useLayoutEffect, Fragment } from 'react';
 import { CloudProps, Position } from '../types';
 import CloudElement from './CloudElement';
 
 import './style.css';
 
-const ThreeDCloud: React.FunctionComponent = (props: CloudProps) => {
-  // const { hasLoaded } = useThreeDCloud();
-
-  // const { sc, depth, radius, list } = props;
+const ThreeDCloud: React.FunctionComponent = () => {
   const [size] = useState<number>(250);
   const [hasLoaded, setHasLoaded] = useState<boolean>(false);
   const [list, setList] = useState<Array<CloudProps>>([
     { item: 'TagCloud' },
-    { item: 'JavaScript' },
+    { item: 'TypeScript' },
     { item: 'CSS3' },
     { item: 'Animation' },
-    { item: 'Interactive' },
-    { item: 'Mouse' },
-    { item: 'Rolling' },
+    { item: 'React' },
+    { item: 'Component' },
+    { item: 'Module' },
     { item: 'Sphere' },
-    { item: '6KB' },
-    { item: 'v2.x' },
-    { item: <h1>Hello</h1> },
+    { item: 'ES6' },
+    { item: 'v0.1.0' },
+    { item: <h1>Hello World!</h1> },
   ]);
 
   const elements: Array<React.ReactNode> = [
     'TagCloud',
-    'JavaScript',
+    'TypeScript',
     'CSS3',
     'Animation',
-    'Interactive',
-    'Mouse',
-    'Rolling',
+    'React',
+    'Component',
+    'Module',
     'Sphere',
-    '6KB',
-    'v2.x',
-    <h1>Hello</h1>,
+    'ES6',
+    'v0.1.0',
+    <h1>Hello World!</h1>,
   ];
 
-  const [elementRandomPosition] = React.useState<Array<Number>>(() => {
-    return elements.map((_element, index) => index);
-  });
+  const [elementRandomPosition] = React.useState<Array<Number>>(() =>
+    elements.map((_element, index) => index)
+  );
 
   const radius = 200;
 
@@ -67,12 +61,10 @@ const ThreeDCloud: React.FunctionComponent = (props: CloudProps) => {
   const depth = 1.5 * radius;
 
   function createItems() {
-    const cloudElements = list.map((element, index) => {
-      return {
-        item: element.item,
-        position: computePosition(index),
-      };
-    });
+    const cloudElements = list.map((element, index) => ({
+      item: element.item,
+      position: computePosition(index),
+    }));
 
     setList(cloudElements);
     setHasLoaded(true);
@@ -96,15 +88,13 @@ const ThreeDCloud: React.FunctionComponent = (props: CloudProps) => {
   }
 
   function getRandomPosition(index: number): Number {
-    let closest = elementRandomPosition.reduce(function (
-      previousValue: Number,
-      currentValue: Number
-    ): Number {
-      return Math.abs(currentValue.valueOf() - index) <
+    const closest = elementRandomPosition.reduce(
+      (previousValue: Number, currentValue: Number): Number =>
+        Math.abs(currentValue.valueOf() - index) <
         Math.abs(previousValue.valueOf() - index)
-        ? currentValue
-        : previousValue;
-    });
+          ? currentValue
+          : previousValue
+    );
     for (let i = 0; i < elementRandomPosition.length; i++) {
       if (elementRandomPosition[i] === closest) {
         elementRandomPosition.splice(i, 1);
@@ -115,7 +105,7 @@ const ThreeDCloud: React.FunctionComponent = (props: CloudProps) => {
 
   const mounted = React.useRef(true);
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (mounted.current) {
       createItems();
       mounted.current = false;
@@ -131,19 +121,17 @@ const ThreeDCloud: React.FunctionComponent = (props: CloudProps) => {
         }}
       >
         {hasLoaded &&
-          list.map((element, index) => {
-            return (
-              <Fragment key={index}>
-                <CloudElement
-                  depth={depth}
-                  sc={sc}
-                  initialPos={element.position!}
-                >
-                  {element.item}
-                </CloudElement>
-              </Fragment>
-            );
-          })}
+          list.map((element, indexElement) => (
+            <Fragment key={indexElement}>
+              <CloudElement
+                depth={depth}
+                sc={sc}
+                initialPos={element.position!}
+              >
+                {element.item}
+              </CloudElement>
+            </Fragment>
+          ))}
       </div>
     </div>
   );
