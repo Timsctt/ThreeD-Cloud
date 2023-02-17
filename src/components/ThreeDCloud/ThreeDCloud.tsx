@@ -77,13 +77,13 @@ const ThreeDCloud: React.FunctionComponent = () => {
       index = getRandomPosition(
         Math.floor(Math.random() * (textsLength + 1))
       ).valueOf();
-    const phi = Math.acos(-1 + (2 * index + 1) / textsLength);
-    const theta = Math.sqrt((textsLength + 1) * Math.PI) * phi;
+    const theta = Math.acos(-1 + (2 * index + 1) / textsLength);
+    const phi = Math.sqrt((textsLength + 1) * Math.PI) * theta;
 
     return {
-      x: (size * Math.cos(theta) * Math.sin(phi)) / 2,
+      x: (size * Math.sin(theta) * Math.cos(phi)) / 2,
       y: (size * Math.sin(theta) * Math.sin(phi)) / 2,
-      z: (size * Math.cos(phi)) / 2,
+      z: (size * Math.cos(theta)) / 2,
     };
   }
 
