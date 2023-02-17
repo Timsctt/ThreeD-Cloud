@@ -33,6 +33,5 @@ yarn-error.log*
 .env.production.local
 
 storybook-static
-.storybook/*
 
 .yalc/*
