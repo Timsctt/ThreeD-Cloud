@@ -7,6 +7,7 @@ export default {
   title: 'Three D Cloud',
   component: ThreeDCloud,
   argTypes: {},
+  args: { radius: 200, size: 150, speed: 0.75 },
 } as ComponentMeta<typeof ThreeDCloud>;
 
 const Template: ComponentStory<typeof ThreeDCloud> = (args) => (
@@ -17,6 +18,4 @@ const Template: ComponentStory<typeof ThreeDCloud> = (args) => (
   </ThreeDCloud>
 );
 
-export const Primary = Template.bind({});
-
-Primary.args = { radius: 200, size: 150, speed: 0.75 };
+export const Cloud = Template.bind({});
