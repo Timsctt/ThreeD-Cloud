@@ -1,4 +1,5 @@
 import React, { useState, useLayoutEffect, Fragment } from 'react';
+import { useThreeDCloud } from '../../hooks/useThreeDCloud';
 import { CloudProps, Position } from '../types';
 import CloudElement from './CloudElement';
 
@@ -23,24 +24,11 @@ const ThreeDCloud: React.FunctionComponent<CloudProps> = ({
       speed,
     }))
   );
+  const { mounted, sc, depth } = useThreeDCloud({ size, speed, radius });
 
   const elementRandomPosition: Array<Number> = elements.map(
     (_element, index) => index
   );
-
-  // Direction
-  const a = -(Math.min(Math.max(0, -size), size) / radius) * speed;
-  const b = (Math.min(Math.max(-500, -size), size) / radius) * speed;
-  const l = Math.PI / 180;
-  const sc = [
-    Math.sin(a * l),
-    Math.cos(a * l),
-    Math.sin(b * l),
-    Math.cos(b * l),
-  ];
-
-  // rolling depth
-  const depth = 1.5 * radius;
 
   function createItems() {
     const cloudElements = elementsList.map((element, index) => ({
@@ -87,8 +75,6 @@ const ThreeDCloud: React.FunctionComponent<CloudProps> = ({
     }
     return closest;
   }
-
-  const mounted = React.useRef(true);
 
   useLayoutEffect(() => {
     if (mounted.current) {
