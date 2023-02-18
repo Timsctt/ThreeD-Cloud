@@ -19,4 +19,4 @@ const Template: ComponentStory<typeof ThreeDCloud> = (args) => (
 
 export const Primary = Template.bind({});
 
-Primary.args = { radius: 200, size: 150 };
+Primary.args = { radius: 200, size: 150, speed: 0.75 };
