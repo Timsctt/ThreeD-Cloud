@@ -52,7 +52,7 @@ yarn test:watch
 ## Features
 
 - [x] Use dynamically react nodes surround by ThreeDCloud tag
-- [ ] Customize speed with props
+- [x] Customize speed with props
 - [x] Customize size with props
 - [x] Customize depth with props
 - [ ] Customize className with props
