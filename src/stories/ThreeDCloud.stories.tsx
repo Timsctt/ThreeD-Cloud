@@ -10,9 +10,13 @@ export default {
 } as ComponentMeta<typeof ThreeDCloud>;
 
 const Template: ComponentStory<typeof ThreeDCloud> = (args) => (
-  <ThreeDCloud {...args} />
+  <ThreeDCloud {...args}>
+    <span>Hello World!</span>
+    <span>Hello People!</span>
+    <span>Hello Dev!</span>
+  </ThreeDCloud>
 );
 
 export const Primary = Template.bind({});
 
-Primary.args = {};
+Primary.args = { radius: 200, size: 150, speed: 0.75 };

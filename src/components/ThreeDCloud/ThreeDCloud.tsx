@@ -1,60 +1,36 @@
-import React, { useState } from 'react';
-import { Fragment } from 'react';
-import { useThreeDCloud } from '../../hooks/useThreeDCloud';
-// import { useThreeDCloud } from "../hooks/useThreeDCloud";
+import React, { useState, useLayoutEffect, Fragment } from 'react';
 import { CloudProps, Position } from '../types';
 import CloudElement from './CloudElement';
 
 import './style.css';
 
-const ThreeDCloud: React.FunctionComponent = (props: CloudProps) => {
-  // const { hasLoaded } = useThreeDCloud();
+const ThreeDCloud: React.FunctionComponent<CloudProps> = ({
+  children,
+  radius,
+  size,
+  speed,
+}: CloudProps) => {
+  const elements: Array<JSX.Element> = React.Children.toArray(
+    children
+  ) as Array<JSX.Element>;
 
-  // const { sc, depth, radius, list } = props;
-  const [size] = useState<number>(250);
   const [hasLoaded, setHasLoaded] = useState<boolean>(false);
-  const [list, setList] = useState<Array<CloudProps>>([
-    { item: 'TagCloud' },
-    { item: 'JavaScript' },
-    { item: 'CSS3' },
-    { item: 'Animation' },
-    { item: 'Interactive' },
-    { item: 'Mouse' },
-    { item: 'Rolling' },
-    { item: 'Sphere' },
-    { item: '6KB' },
-    { item: 'v2.x' },
-    { item: <h1>Hello</h1> },
-  ]);
+  const [elementsList, setElementsList] = useState<Array<CloudProps>>(
+    elements.map((element) => ({
+      item: element!.props.children,
+      radius,
+      size,
+      speed,
+    }))
+  );
 
-  const elements: Array<React.ReactNode> = [
-    'TagCloud',
-    'JavaScript',
-    'CSS3',
-    'Animation',
-    'Interactive',
-    'Mouse',
-    'Rolling',
-    'Sphere',
-    '6KB',
-    'v2.x',
-    <h1>Hello</h1>,
-  ];
-
-  const [elementRandomPosition] = React.useState<Array<Number>>(() => {
-    return elements.map((_element, index) => index);
-  });
-
-  const radius = 200;
-
-  const getMaxSpeed = (name: string) =>
-    ({ slow: 0.2, normal: 1, fast: 2 }[name] || 1);
-
-  const maxSpeed = getMaxSpeed('slow'); // rolling max speed
+  const elementRandomPosition: Array<Number> = elements.map(
+    (_element, index) => index
+  );
 
   // Direction
-  const a = -(Math.min(Math.max(0, -size), size) / radius) * maxSpeed;
-  const b = (Math.min(Math.max(-500, -size), size) / radius) * maxSpeed;
+  const a = -(Math.min(Math.max(0, -size), size) / radius) * speed;
+  const b = (Math.min(Math.max(-500, -size), size) / radius) * speed;
   const l = Math.PI / 180;
   const sc = [
     Math.sin(a * l),
@@ -67,14 +43,15 @@ const ThreeDCloud: React.FunctionComponent = (props: CloudProps) => {
   const depth = 1.5 * radius;
 
   function createItems() {
-    const cloudElements = list.map((element, index) => {
-      return {
-        item: element.item,
-        position: computePosition(index),
-      };
-    });
+    const cloudElements = elementsList.map((element, index) => ({
+      item: element.item,
+      radius,
+      position: computePosition(index),
+      size,
+      speed,
+    }));
 
-    setList(cloudElements);
+    setElementsList(cloudElements);
     setHasLoaded(true);
   }
 
@@ -85,26 +62,24 @@ const ThreeDCloud: React.FunctionComponent = (props: CloudProps) => {
       index = getRandomPosition(
         Math.floor(Math.random() * (textsLength + 1))
       ).valueOf();
-    const phi = Math.acos(-1 + (2 * index + 1) / textsLength);
-    const theta = Math.sqrt((textsLength + 1) * Math.PI) * phi;
+    const theta = Math.acos(-1 + (2 * index + 1) / textsLength);
+    const phi = Math.sqrt((textsLength + 1) * Math.PI) * theta;
 
     return {
-      x: (size * Math.cos(theta) * Math.sin(phi)) / 2,
+      x: (size * Math.sin(theta) * Math.cos(phi)) / 2,
       y: (size * Math.sin(theta) * Math.sin(phi)) / 2,
-      z: (size * Math.cos(phi)) / 2,
+      z: (size * Math.cos(theta)) / 2,
     };
   }
 
   function getRandomPosition(index: number): Number {
-    let closest = elementRandomPosition.reduce(function (
-      previousValue: Number,
-      currentValue: Number
-    ): Number {
-      return Math.abs(currentValue.valueOf() - index) <
+    const closest = elementRandomPosition.reduce(
+      (previousValue: Number, currentValue: Number): Number =>
+        Math.abs(currentValue.valueOf() - index) <
         Math.abs(previousValue.valueOf() - index)
-        ? currentValue
-        : previousValue;
-    });
+          ? currentValue
+          : previousValue
+    );
     for (let i = 0; i < elementRandomPosition.length; i++) {
       if (elementRandomPosition[i] === closest) {
         elementRandomPosition.splice(i, 1);
@@ -115,7 +90,7 @@ const ThreeDCloud: React.FunctionComponent = (props: CloudProps) => {
 
   const mounted = React.useRef(true);
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (mounted.current) {
       createItems();
       mounted.current = false;
@@ -131,19 +106,17 @@ const ThreeDCloud: React.FunctionComponent = (props: CloudProps) => {
         }}
       >
         {hasLoaded &&
-          list.map((element, index) => {
-            return (
-              <Fragment key={index}>
-                <CloudElement
-                  depth={depth}
-                  sc={sc}
-                  initialPos={element.position!}
-                >
-                  {element.item}
-                </CloudElement>
-              </Fragment>
-            );
-          })}
+          elementsList.map((element, indexElement) => (
+            <Fragment key={indexElement}>
+              <CloudElement
+                depth={depth}
+                sc={sc}
+                initialPos={element.position!}
+              >
+                {element.item}
+              </CloudElement>
+            </Fragment>
+          ))}
       </div>
     </div>
   );

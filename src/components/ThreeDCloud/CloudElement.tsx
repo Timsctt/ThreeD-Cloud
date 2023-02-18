@@ -1,20 +1,16 @@
-import React, { PropsWithChildren } from 'react';
-import { useEffect, useLayoutEffect, useState } from 'react';
-import { useCloudElement } from '../../hooks/useCloudElement';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { CloudElementProps, ItemStyle, Position } from '../types';
 
 const CloudElement: React.FunctionComponent<CloudElementProps> = (
   props: CloudElementProps
 ) => {
-  // const { hasLoaded, scale } = useCloudElement(props);
-
   const { initialPos, sc, depth } = props;
 
   const [position, setPosition] = useState<Position>(initialPos);
   const [per, setPer] = useState<number>(1);
   const [style, setStyle] = useState<ItemStyle>({});
   const [hasLoaded, setHasLoaded] = useState<boolean>(false);
-  const [scale] = useState<number>(1);
+  const [scale, setScale] = useState<number>(1);
 
   const dimension = {
     offsetWidth: 50,
@@ -37,7 +33,7 @@ const CloudElement: React.FunctionComponent<CloudElementProps> = (
 
   function getStyle(): ItemStyle {
     nextPosition();
-    let scale = Math.round(per * 1e3) / 1e3;
+    setScale(Math.round(per * 1e3) / 1e3);
     let alpha = per * per - 0.2;
     alpha = Math.abs(Math.round((alpha > 1 ? 1 : alpha) * 1e3) / 1e3);
 
@@ -46,7 +42,7 @@ const CloudElement: React.FunctionComponent<CloudElementProps> = (
     const transform = `translate3d(${left}px, ${top}px, 0) scale(${scale})`;
 
     return {
-      transform: transform,
+      transform,
       filter: `alpha(opacity=${Math.abs(100 * alpha)})`,
       opacity: `${alpha}`,
     };
@@ -75,7 +71,7 @@ const CloudElement: React.FunctionComponent<CloudElementProps> = (
             opacity: style.opacity,
             transform: style.transform,
             width: style.width,
-            scale: scale,
+            scale,
           }}
         >
           {props.children}
