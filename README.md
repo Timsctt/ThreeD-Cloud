@@ -51,10 +51,10 @@ yarn test:watch
 
 ## Features
 
-- [ ] Use dynamically react nodes surround by ThreeDCloud tag
+- [x] Use dynamically react nodes surround by ThreeDCloud tag
 - [ ] Customize speed with props
-- [ ] Customize size with props
-- [ ] Customize depth with props
+- [x] Customize size with props
+- [x] Customize depth with props
 - [ ] Customize className with props
 - [ ] Storybook customization
 - [ ] Tests
