@@ -1,21 +1,18 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
+import { useCloudElement } from '../../hooks/useCloudElement';
 import { CloudElementProps, ItemStyle, Position } from '../types';
 
 const CloudElement: React.FunctionComponent<CloudElementProps> = (
   props: CloudElementProps
 ) => {
   const { initialPos, sc, depth } = props;
+  const { dimension } = useCloudElement();
 
   const [position, setPosition] = useState<Position>(initialPos);
   const [per, setPer] = useState<number>(1);
   const [style, setStyle] = useState<ItemStyle>({});
   const [hasLoaded, setHasLoaded] = useState<boolean>(false);
   const [scale, setScale] = useState<number>(1);
-
-  const dimension = {
-    offsetWidth: 50,
-    offsetHeight: 50,
-  };
 
   function nextPosition() {
     const rx1 = position.x;
