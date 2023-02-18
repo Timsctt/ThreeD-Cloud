@@ -4,42 +4,25 @@ import CloudElement from './CloudElement';
 
 import './style.css';
 
-const ThreeDCloud: React.FunctionComponent = () => {
-  const [size] = useState<number>(250);
+const ThreeDCloud: React.FunctionComponent<CloudProps> = ({
+  children,
+  radius,
+  size,
+}: CloudProps) => {
+  const elements: Array<JSX.Element> = children as Array<JSX.Element>;
+
   const [hasLoaded, setHasLoaded] = useState<boolean>(false);
-  const [list, setList] = useState<Array<CloudProps>>([
-    { item: 'TagCloud' },
-    { item: 'TypeScript' },
-    { item: 'CSS3' },
-    { item: 'Animation' },
-    { item: 'React' },
-    { item: 'Component' },
-    { item: 'Module' },
-    { item: 'Sphere' },
-    { item: 'ES6' },
-    { item: 'v0.1.0' },
-    { item: <h1>Hello World!</h1> },
-  ]);
-
-  const elements: Array<React.ReactNode> = [
-    'TagCloud',
-    'TypeScript',
-    'CSS3',
-    'Animation',
-    'React',
-    'Component',
-    'Module',
-    'Sphere',
-    'ES6',
-    'v0.1.0',
-    <h1>Hello World!</h1>,
-  ];
-
-  const [elementRandomPosition] = React.useState<Array<Number>>(() =>
-    elements.map((_element, index) => index)
+  const [elementsList, setElementsList] = useState<Array<CloudProps>>(
+    elements.map((element) => ({
+      item: element!.props.children,
+      radius,
+      size,
+    }))
   );
 
-  const radius = 200;
+  const elementRandomPosition: Array<Number> = elements.map(
+    (_element, index) => index
+  );
 
   const getMaxSpeed = (name: string) =>
     ({ slow: 0.2, normal: 1, fast: 2 }[name] || 1);
@@ -61,12 +44,14 @@ const ThreeDCloud: React.FunctionComponent = () => {
   const depth = 1.5 * radius;
 
   function createItems() {
-    const cloudElements = list.map((element, index) => ({
+    const cloudElements = elementsList.map((element, index) => ({
       item: element.item,
+      radius,
       position: computePosition(index),
+      size,
     }));
 
-    setList(cloudElements);
+    setElementsList(cloudElements);
     setHasLoaded(true);
   }
 
@@ -121,7 +106,7 @@ const ThreeDCloud: React.FunctionComponent = () => {
         }}
       >
         {hasLoaded &&
-          list.map((element, indexElement) => (
+          elementsList.map((element, indexElement) => (
             <Fragment key={indexElement}>
               <CloudElement
                 depth={depth}
