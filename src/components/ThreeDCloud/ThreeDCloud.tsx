@@ -8,8 +8,11 @@ const ThreeDCloud: React.FunctionComponent<CloudProps> = ({
   children,
   radius,
   size,
+  speed,
 }: CloudProps) => {
-  const elements: Array<JSX.Element> = children as Array<JSX.Element>;
+  const elements: Array<JSX.Element> = React.Children.toArray(
+    children
+  ) as Array<JSX.Element>;
 
   const [hasLoaded, setHasLoaded] = useState<boolean>(false);
   const [elementsList, setElementsList] = useState<Array<CloudProps>>(
@@ -17,6 +20,7 @@ const ThreeDCloud: React.FunctionComponent<CloudProps> = ({
       item: element!.props.children,
       radius,
       size,
+      speed,
     }))
   );
 
@@ -24,14 +28,9 @@ const ThreeDCloud: React.FunctionComponent<CloudProps> = ({
     (_element, index) => index
   );
 
-  const getMaxSpeed = (name: string) =>
-    ({ slow: 0.2, normal: 1, fast: 2 }[name] || 1);
-
-  const maxSpeed = getMaxSpeed('slow'); // rolling max speed
-
   // Direction
-  const a = -(Math.min(Math.max(0, -size), size) / radius) * maxSpeed;
-  const b = (Math.min(Math.max(-500, -size), size) / radius) * maxSpeed;
+  const a = -(Math.min(Math.max(0, -size), size) / radius) * speed;
+  const b = (Math.min(Math.max(-500, -size), size) / radius) * speed;
   const l = Math.PI / 180;
   const sc = [
     Math.sin(a * l),
@@ -49,6 +48,7 @@ const ThreeDCloud: React.FunctionComponent<CloudProps> = ({
       radius,
       position: computePosition(index),
       size,
+      speed,
     }));
 
     setElementsList(cloudElements);

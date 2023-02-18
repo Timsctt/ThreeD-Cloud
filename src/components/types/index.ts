@@ -11,6 +11,7 @@ export interface CloudProps extends PropsWithChildren {
   position?: Position;
   radius: number;
   size: number;
+  speed: number;
 }
 
 export interface CloudElementProps extends PropsWithChildren {
