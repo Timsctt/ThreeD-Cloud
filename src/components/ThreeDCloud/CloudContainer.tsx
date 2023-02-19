@@ -1,17 +1,17 @@
 import React, { Fragment } from 'react';
-import { useThreeDCloud } from '../../hooks/useThreeDCloud';
+import { useCloudContainer } from '../../hooks/useCloudContainer';
 import { CloudProps } from '../types';
 import CloudElement from './CloudElement';
 
 import './style.css';
 
-const ThreeDCloud: React.FunctionComponent<CloudProps> = ({
+export const CloudContainer: React.FunctionComponent<CloudProps> = ({
   children,
   radius,
   size,
   speed,
 }: CloudProps) => {
-  const { sc, depth, elementsList, hasLoaded } = useThreeDCloud({
+  const { sc, depth, elementsList, hasLoaded } = useCloudContainer({
     children,
     size,
     speed,
@@ -42,5 +42,3 @@ const ThreeDCloud: React.FunctionComponent<CloudProps> = ({
     </div>
   );
 };
-
-export default ThreeDCloud;

@@ -1,2 +1,2 @@
-export { default as ThreeDCloud } from "./ThreeDCloud";
-export { Position, CloudElementProps, ItemStyle } from "./types";
+export { CloudContainer } from './ThreeDCloud';
+export { Position, CloudElementProps, ItemStyle } from './types';

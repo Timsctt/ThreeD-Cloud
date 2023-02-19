@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { ThreeDCloud } from '../src';
+import { CloudContainer } from '../src';
 import CloudElement from '../src/components/ThreeDCloud/CloudElement';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -17,7 +17,7 @@ describe('displayCloud', () => {
     const sc: number[] = [];
 
     render(
-      <ThreeDCloud radius={radius} speed={speed} size={size}>
+      <CloudContainer radius={radius} speed={speed} size={size}>
         {elements.map((element, index) => (
           <CloudElement
             key={index}
@@ -28,7 +28,7 @@ describe('displayCloud', () => {
             {element.item}
           </CloudElement>
         ))}
-      </ThreeDCloud>
+      </CloudContainer>
     );
 
     const element1 = screen.getByText('Element 1');

@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useLayoutEffect, useState } from 'react';
 import { CloudProps, Position } from '../components/types';
 
-export function useThreeDCloud({
+export function useCloudContainer({
   children = [],
   size,
   speed,
