@@ -62,11 +62,7 @@ Link your package to your development project by simulating package manage by us
 
 ```shell
 yalc add three-d-cloud
-```
-
-or
-
-```shell
+# or
 npx yalc link three-d-cloud
 ```
 
