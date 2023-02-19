@@ -22,8 +22,8 @@ After installed the package add these lines :
 ```typescript
 import { ThreeDCloud } from '@timsctt/threed-cloud';
 
-function MyComponent = () => {
-  return(
+const MyComponent = () => {
+  return (
     <>
       <ThreeDCloud radius={150} size={150} speed={1}>
         <p>Paragraph</p>
@@ -32,8 +32,8 @@ function MyComponent = () => {
         {/* [...] */}
       </ThreeDCloud>
     </>
-  )
-}
+  );
+};
 ```
 
 ### Building
