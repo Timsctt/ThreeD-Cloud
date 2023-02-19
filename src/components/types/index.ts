@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
 export interface Position {
   x: number;
@@ -7,7 +7,7 @@ export interface Position {
 }
 
 export interface CloudProps extends PropsWithChildren {
-  item?: ReactNode;
+  item?: CloudElementProps;
   position?: Position;
   radius: number;
   size: number;
@@ -15,11 +15,8 @@ export interface CloudProps extends PropsWithChildren {
 }
 
 export interface CloudElementProps extends PropsWithChildren {
-  children: ReactNode;
   depth: number;
-  initialPos: Position;
-  item?: ReactNode;
-  position?: Position;
+  position: Position;
   sc: number[];
   scale?: number;
   style?: ItemStyle;

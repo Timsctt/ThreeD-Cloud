@@ -5,25 +5,23 @@ import { CloudElementProps } from '../types';
 const CloudElement: React.FunctionComponent<CloudElementProps> = (
   props: CloudElementProps
 ) => {
-  const { hasLoaded, style, scale } = useCloudElement(props);
+  const { style, scale } = useCloudElement(props);
 
   return (
     <>
-      {hasLoaded && (
-        <span
-          className="three-d-item"
-          style={{
-            filter: style.filter,
-            height: style.height,
-            opacity: style.opacity,
-            transform: style.transform,
-            width: style.width,
-            scale,
-          }}
-        >
-          {props.children}
-        </span>
-      )}
+      <span
+        className="three-d-item"
+        style={{
+          filter: style.filter,
+          height: style.height,
+          opacity: style.opacity,
+          transform: style.transform,
+          width: style.width,
+          scale,
+        }}
+      >
+        {props.children}
+      </span>
     </>
   );
 };

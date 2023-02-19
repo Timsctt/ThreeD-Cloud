@@ -1,8 +1,8 @@
-import React, { PropsWithChildren, useLayoutEffect, useState } from 'react';
-import { CloudProps, Position } from '../components/types';
+import React, { PropsWithChildren } from 'react';
+import { CloudElementProps, CloudProps, Position } from '../components/types';
 
 export function useCloudContainer({
-  children = [],
+  children,
   size,
   speed,
   radius,
@@ -10,22 +10,7 @@ export function useCloudContainer({
   const elements: Array<JSX.Element> = React.Children.toArray(
     children
   ) as Array<JSX.Element>;
-
-  const [hasLoaded, setHasLoaded] = useState<boolean>(false);
-  const [elementsList, setElementsList] = useState<Array<CloudProps>>(
-    elements.map((element) => ({
-      item: element.props.children,
-      radius,
-      size,
-      speed,
-    }))
-  );
-
-  const elementRandomPosition: Array<Number> = elements.map(
-    (_element, index) => index
-  );
-
-  const mounted = React.useRef(true);
+  const numberElements = elements.length;
 
   // Direction
   const a = -(Math.min(Math.max(0, -size), size) / radius) * speed;
@@ -41,28 +26,17 @@ export function useCloudContainer({
   // rolling depth
   const depth = 1.5 * radius;
 
-  function createItems() {
-    const cloudElements = elementsList.map((element, index) => ({
-      item: element.item,
-      radius,
-      position: computePosition(index),
-      size,
-      speed,
-    }));
-
-    setElementsList(cloudElements);
-    setHasLoaded(true);
-  }
+  const elementRandomPosition: Array<Number> = elements.map(
+    (_element, index) => index
+  );
 
   function computePosition(index: number, random = true): Position {
-    const textsLength = elements.length;
-
     if (random)
-      index = getRandomPosition(
-        Math.floor(Math.random() * (textsLength + 1))
+      index = getRandomIndex(
+        Math.floor(Math.random() * (numberElements + 1))
       ).valueOf();
-    const theta = Math.acos(-1 + (2 * index + 1) / textsLength);
-    const phi = Math.sqrt((textsLength + 1) * Math.PI) * theta;
+    const theta = Math.acos(-1 + (2 * index + 1) / numberElements);
+    const phi = Math.sqrt((numberElements + 1) * Math.PI) * theta;
 
     return {
       x: (size * Math.sin(theta) * Math.cos(phi)) / 2,
@@ -71,7 +45,7 @@ export function useCloudContainer({
     };
   }
 
-  function getRandomPosition(index: number): Number {
+  function getRandomIndex(index: number): Number {
     const closest = elementRandomPosition.reduce(
       (previousValue: Number, currentValue: Number): Number =>
         Math.abs(currentValue.valueOf() - index) <
@@ -87,18 +61,21 @@ export function useCloudContainer({
     return closest;
   }
 
-  useLayoutEffect(() => {
-    if (mounted.current) {
-      createItems();
-      mounted.current = false;
-    }
-  }, []);
+  const elementsList: Array<CloudElementProps> = elements.map(
+    (element, index) => ({
+      children: element.props.children,
+      depth,
+      position: computePosition(index),
+      size,
+      speed,
+      sc,
+    })
+  );
 
   return {
     elements,
     depth,
     sc,
     elementsList,
-    hasLoaded,
   };
 }

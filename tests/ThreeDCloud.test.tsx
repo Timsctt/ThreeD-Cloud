@@ -21,7 +21,7 @@ describe('displayCloud', () => {
         {elements.map((element, index) => (
           <CloudElement
             key={index}
-            initialPos={element.position}
+            position={element.position}
             sc={sc}
             depth={depth}
           >
