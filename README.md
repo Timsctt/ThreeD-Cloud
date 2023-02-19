@@ -92,17 +92,6 @@ yarn test:watch
 | randomPosition | bool   | true    | Choose randomly a position for elements each time rendering |
 | className      | string | -       | Style classes spread by spaces                              |
 
-## Features
-
-- [x] Use dynamically react nodes surround by ThreeDCloud tag
-- [x] Customize speed with props
-- [x] Customize size with props
-- [x] Customize depth with props
-- [x] Customize className with props
-- [x] Storybook customization
-- [x] Tests
-- [x] Install with npm
-
 ## Contributing
 
 Contributions are always welcome! See [CONTRIBUTING.md](CONTRIBUTING.md 'CONTRIBUTING.md') for ways to get started.
