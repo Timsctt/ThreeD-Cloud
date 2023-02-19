@@ -13,6 +13,7 @@ export const CloudContainer: React.FunctionComponent<CloudProps> = (
   return (
     <div className="threed-cloud-container">
       <div
+        className={props.className}
         style={{
           width: `${2 * props.radius}px`,
           height: `${2 * props.radius}px`,
