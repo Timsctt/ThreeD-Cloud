@@ -26,9 +26,6 @@ export function useCloudElement(props: CloudElementProps) {
   }
 
   function getStyle(): ItemStyle {
-    nextPosition();
-    setPer((2 * props.depth) / (2 * props.depth + position.z));
-    setScale(Math.round(per * 1e3) / 1e3);
     let alpha = per * per - 0.2;
     alpha = Math.abs(Math.round((alpha > 1 ? 1 : alpha) * 1e3) / 1e3);
 
@@ -45,6 +42,9 @@ export function useCloudElement(props: CloudElementProps) {
 
   useEffect(() => {
     const updateStyleInterval = setInterval(() => {
+      nextPosition();
+      setPer((2 * props.depth) / (2 * props.depth + position.z));
+      setScale(Math.round(per * 1e3) / 1e3);
       setStyle(getStyle());
     }, 15);
     return () => clearInterval(updateStyleInterval);
