@@ -6,8 +6,13 @@ import { CloudContainer } from '..';
 export default {
   title: 'Three D Cloud',
   component: CloudContainer,
-  argTypes: {},
-  args: { radius: 200, size: 150, speed: 0.75 },
+  args: {
+    radius: 200,
+    size: 150,
+    speed: 0.75,
+    className: '',
+    randomPosition: true,
+  },
 } as ComponentMeta<typeof CloudContainer>;
 
 const Template: ComponentStory<typeof CloudContainer> = (args) => (
