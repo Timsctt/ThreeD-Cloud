@@ -52,7 +52,7 @@ First install dependencies by running
 yarn
 ```
 
-To get a rendering in storybook run
+To render in storybook run
 
 ```shell
 yarn dev
