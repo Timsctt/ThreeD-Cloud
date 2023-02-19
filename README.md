@@ -72,15 +72,29 @@ Run tests with `jest` when changes are detected
 yarn test:watch
 ```
 
+## API Reference
+
+### CloudContainer
+
+#### Props
+
+| Props          | Type   | Default | Description                                                 |
+| -------------- | ------ | ------- | ----------------------------------------------------------- |
+| radius         | number | 200     | Determine cloud format. Used for depth calculation          |
+| size           | number | 150     | Size of the square container : size = with = height         |
+| speed          | number | 1       | Speed which cloud is animated                               |
+| randomPosition | bool   | true    | Choose randomly a position for elements each time rendering |
+| className      | string | -       | Style classes spread by spaces                              |
+
 ## Features
 
 - [x] Use dynamically react nodes surround by ThreeDCloud tag
 - [x] Customize speed with props
 - [x] Customize size with props
 - [x] Customize depth with props
-- [ ] Customize className with props
+- [x] Customize className with props
 - [x] Storybook customization
-- [ ] Tests
+- [x] Tests
 - [x] Install with npm
 
 ## Contributing
