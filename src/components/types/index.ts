@@ -7,9 +7,11 @@ export interface Position {
 }
 
 export interface CloudProps extends PropsWithChildren {
+  className?: string;
   item?: CloudElementProps;
   position?: Position;
   radius: number;
+  randomPosition?: boolean;
   size: number;
   speed: number;
 }
