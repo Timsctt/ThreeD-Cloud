@@ -14,7 +14,7 @@ export function useCloudContainer({
   const [hasLoaded, setHasLoaded] = useState<boolean>(false);
   const [elementsList, setElementsList] = useState<Array<CloudProps>>(
     elements.map((element) => ({
-      item: element!.props.children,
+      item: element.props.children,
       radius,
       size,
       speed,
