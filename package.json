@@ -1,9 +1,13 @@
 {
-  "name": "three-d-cloud",
+  "name": "@timsctt/threed-cloud",
   "description": "React module for create a cloud of React Nodes",
   "version": "0.1.0",
   "author": "Timothée Schmitt",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Timsctt/ThreeD-Cloud"
+  },
   "keywords": [
     "TagCloud",
     "TypeScript",
