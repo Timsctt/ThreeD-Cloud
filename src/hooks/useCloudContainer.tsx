@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { CloudElementProps, CloudProps, Position } from '../components/types';
 
 export function useCloudContainer({
@@ -6,7 +6,8 @@ export function useCloudContainer({
   size,
   speed,
   radius,
-}: PropsWithChildren<CloudProps>) {
+  randomPosition = true,
+}: CloudProps) {
   const elements: Array<JSX.Element> = React.Children.toArray(
     children
   ) as Array<JSX.Element>;
@@ -30,8 +31,8 @@ export function useCloudContainer({
     (_element, index) => index
   );
 
-  function computePosition(index: number, random = true): Position {
-    if (random)
+  function computePosition(index: number): Position {
+    if (randomPosition)
       index = getRandomIndex(
         Math.floor(Math.random() * (numberElements + 1))
       ).valueOf();
