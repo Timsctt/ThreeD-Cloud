@@ -52,6 +52,12 @@ First install dependencies by running
 yarn
 ```
 
+To get a rendering in storybook run
+
+```shell
+yarn dev
+```
+
 Watch and rebuild code with tsup and runs Storybook to preview your UI during development.
 
 ```shell
