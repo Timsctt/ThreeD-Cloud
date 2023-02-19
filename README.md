@@ -9,10 +9,31 @@
 
 ## Install
 
-First install dependencies by running
-
 ```shell
-yarn
+npm i @timsctt/threed-cloud
+# or
+yarn add @timsctt/threed-cloud
+```
+
+## Usage
+
+After installed the package add these lines :
+
+```typescript
+import { ThreeDCloud } from '@timsctt/threed-cloud';
+
+function MyComponent = () => {
+  return(
+    <>
+      <ThreeDCloud radius={150} size={150} speed={1}>
+        <p>Paragraph</p>
+        <h4>Title</h4>
+        <span>Basic element</span>
+        {/* [...] */}
+      </ThreeDCloud>
+    </>
+  )
+}
 ```
 
 ### Building
@@ -24,6 +45,12 @@ yarn build
 ```
 
 ### Developing
+
+First install dependencies by running
+
+```shell
+yarn
+```
 
 Watch and rebuild code with tsup and runs Storybook to preview your UI during development.
 
@@ -56,8 +83,9 @@ yarn test:watch
 - [x] Customize size with props
 - [x] Customize depth with props
 - [ ] Customize className with props
-- [ ] Storybook customization
+- [x] Storybook customization
 - [ ] Tests
+- [x] Install with npm
 
 ## Contributing
 
