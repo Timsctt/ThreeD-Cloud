@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCloudElement } from '../../hooks/useCloudElement';
-import { CloudElementProps } from '../types';
+import { CloudElementProps } from '../../types';
 
 const CloudElement: React.FunctionComponent<CloudElementProps> = (
   props: CloudElementProps

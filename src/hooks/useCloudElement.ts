@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { CloudElementProps } from '../components/types/index';
-import { ItemStyle, Position } from '../components';
+import { CloudElementProps } from '../types/index';
+import { ItemStyle, Position } from '../types';
 
 export function useCloudElement(props: CloudElementProps) {
   const dimension = {

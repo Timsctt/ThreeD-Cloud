@@ -1,5 +1,5 @@
 import React from 'react';
-import { CloudElementProps, CloudProps, Position } from '../components/types';
+import { CloudElementProps, CloudContainerProps, Position } from '../types';
 
 export function useCloudContainer({
   children,
@@ -7,7 +7,7 @@ export function useCloudContainer({
   speed = 1,
   radius = 200,
   randomPosition = true,
-}: CloudProps) {
+}: CloudContainerProps) {
   const elements: Array<JSX.Element> = React.Children.toArray(
     children
   ) as Array<JSX.Element>;

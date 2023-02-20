@@ -1,12 +1,12 @@
 import React from 'react';
 import { useCloudContainer } from '../../hooks/useCloudContainer';
-import { CloudProps } from '../types';
+import { CloudContainerProps } from '../../types';
 import CloudElement from './CloudElement';
 
 import './style.css';
 
-export const CloudContainer: React.FunctionComponent<CloudProps> = (
-  props: CloudProps
+export const CloudContainer: React.FunctionComponent<CloudContainerProps> = (
+  props: CloudContainerProps
 ) => {
   const { sc, depth, elementsList } = useCloudContainer(props);
 
