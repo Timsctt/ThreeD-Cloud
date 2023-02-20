@@ -6,7 +6,7 @@ export interface Position {
   z: number;
 }
 
-export interface CloudProps extends PropsWithChildren {
+export interface CloudContainerProps extends PropsWithChildren {
   className?: string;
   item?: CloudElementProps;
   position?: Position;
