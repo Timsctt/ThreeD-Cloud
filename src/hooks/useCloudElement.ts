@@ -31,7 +31,7 @@ export function useCloudElement(props: CloudElementProps) {
 
     const left = (position.x - dimension.offsetWidth / 2).toFixed(2);
     const top = (position.y - dimension.offsetHeight / 2).toFixed(2);
-    const transform = `translate3d(${left}px, ${top}px, 0) scale(${scale})`;
+    const transform = `translate3d(calc(-50% + ${left}px), calc(-50% + ${top}px), 0) scale(${scale})`;
 
     return {
       transform,

@@ -9,7 +9,7 @@
 .three-d-item {
   will-change: transform, opacity, filter;
   position: absolute;
-  top: 50%;
   left: 50%;
-  transform-origin: 50% 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
