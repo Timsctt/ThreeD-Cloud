@@ -64,7 +64,11 @@ export function useCloudContainer({
 
   const elementsList: Array<CloudElementProps> = elements.map(
     (element, index) => ({
-      children: element.props.children,
+      children: React.createElement(
+        element.type,
+        element.props,
+        element.props.children
+      ),
       depth,
       position: computePosition(index),
       size,

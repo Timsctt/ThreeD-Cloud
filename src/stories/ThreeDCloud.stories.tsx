@@ -20,6 +20,7 @@ const Template: ComponentStory<typeof CloudContainer> = (args) => (
     <span>Hello World!</span>
     <span>Hello People!</span>
     <span>Hello Dev!</span>
+    <h1>Hello title!</h1>
   </CloudContainer>
 );
 
