@@ -1,6 +1,12 @@
 # Three D Cloud
 
-![Three D Cloud](.github/images/ThreeDCloud.gif 'Three D Cloud')
+<p align="center">
+  <img alt="ThreeD Cloud" src=".github/images/ThreeDCloud.gif">
+</p>
+
+## Description
+
+ThreeD Cloud is a React module using a 3D sphere to give a more interesting way to represent words, images or any other ReactNode element.
 
 ## Requirements
 
@@ -29,6 +35,7 @@ const MyComponent = () => {
         <p>Paragraph</p>
         <h4>Title</h4>
         <span>Basic element</span>
+        <img src="my-srouce.png" />
         {/* [...] */}
       </ThreeDCloud>
     </>
