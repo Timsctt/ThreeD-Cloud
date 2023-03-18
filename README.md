@@ -26,18 +26,18 @@ yarn add @timsctt/threed-cloud
 After installed the package add these lines :
 
 ```typescript
-import { ThreeDCloud } from '@timsctt/threed-cloud';
+import { CloudContainer } from '@timsctt/threed-cloud';
 
 const MyComponent = () => {
   return (
     <>
-      <ThreeDCloud radius={150} size={150} speed={1}>
+      <CloudContainer radius={150} size={150} speed={1}>
         <p>Paragraph</p>
         <h4>Title</h4>
         <span>Basic element</span>
         <img src="my-srouce.png" />
         {/* [...] */}
-      </ThreeDCloud>
+      </CloudContainer>
     </>
   );
 };
