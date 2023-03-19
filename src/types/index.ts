@@ -8,6 +8,7 @@ export interface Position {
 
 export interface CloudContainerProps extends PropsWithChildren {
   className?: string;
+  isPausable?: boolean;
   item?: CloudElementProps;
   position?: Position;
   radius: number;
@@ -18,6 +19,7 @@ export interface CloudContainerProps extends PropsWithChildren {
 
 export interface CloudElementProps extends PropsWithChildren {
   depth: number;
+  pause: boolean;
   position: Position;
   sc: number[];
   scale?: number;
