@@ -8,6 +8,7 @@ describe('useCloudElement', () => {
       position: { x: 0, y: 0, z: 0 },
       sc: [1, 1, 1, 1],
       depth: 50,
+      pause: true,
     };
 
     const { result } = renderHook(() => useCloudElement(props));
@@ -21,6 +22,7 @@ describe('useCloudElement', () => {
       position: { x: 0, y: 0, z: 0 },
       sc: [1, 1, 1, 1],
       depth: 50,
+      pause: true,
     };
 
     const { result } = renderHook(() => useCloudElement(props));
