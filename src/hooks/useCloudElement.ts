@@ -41,14 +41,17 @@ export function useCloudElement(props: CloudElementProps) {
   }
 
   useEffect(() => {
-    const updateStyleInterval = setInterval(() => {
-      nextPosition();
-      setPer((2 * props.depth) / (2 * props.depth + position.z));
-      setScale(Math.round(per * 1e3) / 1e3);
-      setStyle(getStyle());
-    }, 15);
-    return () => clearInterval(updateStyleInterval);
-  }, [style]);
+    if (!props.pause) {
+      const updateStyleInterval = setInterval(() => {
+        nextPosition();
+        setPer((2 * props.depth) / (2 * props.depth + position.z));
+        setScale(Math.round(per * 1e3) / 1e3);
+        setStyle(getStyle());
+      }, 15);
+      return () => clearInterval(updateStyleInterval);
+    }
+    return () => {};
+  }, [style, props.pause]);
 
   return {
     style,

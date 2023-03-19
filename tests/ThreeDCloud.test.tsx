@@ -24,6 +24,7 @@ describe('displayCloud', () => {
             position={element.position}
             sc={sc}
             depth={depth}
+            pause={false}
           >
             {element.item}
           </CloudElement>
@@ -54,6 +55,7 @@ describe('displayCloud', () => {
             position={element.position}
             sc={sc}
             depth={depth}
+            pause={false}
           >
             {element.item}
           </CloudElement>

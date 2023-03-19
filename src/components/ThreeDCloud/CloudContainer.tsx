@@ -8,10 +8,17 @@ import './style.css';
 export const CloudContainer: React.FunctionComponent<CloudContainerProps> = (
   props: CloudContainerProps
 ) => {
-  const { sc, depth, elementsList } = useCloudContainer(props);
+  const { sc, depth, elementsList, handlePause, pause, handlePauseByKey } =
+    useCloudContainer(props);
 
   return (
-    <div className="threed-cloud-container">
+    <div
+      className="threed-cloud-container"
+      role="button"
+      onClick={handlePause}
+      onKeyDown={handlePauseByKey}
+      tabIndex={0}
+    >
       <div
         className={props.className}
         style={{
@@ -25,6 +32,7 @@ export const CloudContainer: React.FunctionComponent<CloudContainerProps> = (
             depth={depth}
             sc={sc}
             position={element.position}
+            pause={pause}
           >
             {element.children}
           </CloudElement>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CloudElementProps, CloudContainerProps, Position } from '../types';
 
 export function useCloudContainer({
@@ -7,11 +7,14 @@ export function useCloudContainer({
   speed = 1,
   radius = 200,
   randomPosition = true,
+  isPausable = true,
 }: CloudContainerProps) {
   const elements: Array<JSX.Element> = React.Children.toArray(
     children
   ) as Array<JSX.Element>;
   const numberElements = elements.length;
+
+  const [pause, setPause] = useState<boolean>(false);
 
   // Direction
   const a = -(Math.min(Math.max(0, -size), size) / radius) * speed;
@@ -74,10 +77,28 @@ export function useCloudContainer({
       size,
       speed,
       sc,
+      pause,
     })
   );
 
+  const handlePause = (): void => {
+    if (isPausable) {
+      setPause(!pause);
+    }
+  };
+
+  const handlePauseByKey = (
+    event: React.KeyboardEvent<HTMLDivElement>
+  ): void => {
+    if (event.code === 'Space') {
+      handlePause();
+    }
+  };
+
   return {
+    handlePause,
+    pause,
+    handlePauseByKey,
     elements,
     depth,
     sc,
