@@ -12,6 +12,7 @@ export default {
     speed: 0.75,
     className: '',
     randomPosition: true,
+    isPausable: true,
   },
 } as ComponentMeta<typeof CloudContainer>;
 
