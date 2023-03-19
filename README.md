@@ -97,6 +97,7 @@ yarn test:watch
 | size           | number | 150     | Size of the square container : size = with = height         |
 | speed          | number | 1       | Speed which cloud is animated                               |
 | randomPosition | bool   | true    | Choose randomly a position for elements each time rendering |
+| isPausable     | bool   | true    | Allows you to pause the movement                            |
 | className      | string | -       | Style classes spread by spaces                              |
 
 ## Contributing
