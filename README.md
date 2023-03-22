@@ -35,7 +35,7 @@ const MyComponent = () => {
         <p>Paragraph</p>
         <h4>Title</h4>
         <span>Basic element</span>
-        <img src="my-srouce.png" />
+        <img src="my-source.png" />
         {/* [...] */}
       </CloudContainer>
     </>
