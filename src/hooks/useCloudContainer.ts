@@ -8,6 +8,7 @@ export function useCloudContainer({
   radius = 200,
   randomPosition = true,
   isPausable = true,
+  iconOnHover = false,
 }: CloudContainerProps) {
   const elements: Array<JSX.Element> = React.Children.toArray(
     children
@@ -99,6 +100,8 @@ export function useCloudContainer({
     handlePause,
     pause,
     handlePauseByKey,
+    isPausable,
+    iconOnHover,
     elements,
     depth,
     sc,
