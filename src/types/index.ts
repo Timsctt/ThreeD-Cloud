@@ -8,6 +8,7 @@ export interface Position {
 
 export interface CloudContainerProps extends PropsWithChildren {
   className?: string;
+  iconOnHover?: boolean;
   isPausable?: boolean;
   item?: CloudElementProps;
   position?: Position;

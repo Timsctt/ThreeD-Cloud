@@ -13,6 +13,7 @@ export default {
     className: '',
     randomPosition: true,
     isPausable: true,
+    iconOnHover: true,
   },
 } as ComponentMeta<typeof CloudContainer>;
 
