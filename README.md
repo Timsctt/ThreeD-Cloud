@@ -98,6 +98,7 @@ yarn test:watch
 | speed          | number | 1       | Speed which cloud is animated                               |
 | randomPosition | bool   | true    | Choose randomly a position for elements each time rendering |
 | isPausable     | bool   | true    | Allows you to pause the movement                            |
+| iconOnHover    | bool   | false   | Display on hover play/pause icon                            |
 | className      | string | -       | Style classes spread by spaces                              |
 
 ## Contributing
