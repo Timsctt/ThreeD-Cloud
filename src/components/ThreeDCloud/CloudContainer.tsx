@@ -21,9 +21,7 @@ export const CloudContainer: React.FunctionComponent<CloudContainerProps> = (
 
   return (
     <div
-      className={`threed-cloud-container   ${
-        isPausable ? 'tdcIsPausable' : ''
-      }`}
+      className={`threed-cloud-container ${isPausable ? 'tdcIsPausable' : ''}`}
       role="button"
       onClick={handlePause}
       onKeyDown={handlePauseByKey}
