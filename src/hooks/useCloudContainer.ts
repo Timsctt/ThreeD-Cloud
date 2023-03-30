@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CloudElementProps, CloudContainerProps, Position } from '../types';
 
 export function useCloudContainer({
@@ -9,6 +9,7 @@ export function useCloudContainer({
   randomPosition = true,
   isPausable = true,
   iconOnHover = false,
+  mouseTracking = true,
 }: CloudContainerProps) {
   const elements: Array<JSX.Element> = React.Children.toArray(
     children
@@ -95,6 +96,24 @@ export function useCloudContainer({
       handlePause();
     }
   };
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      const x = event.clientX;
+      const y = event.clientY;
+
+      if (mouseTracking) {
+        return x + y; // something to do with sc compute
+      }
+      return x;
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   return {
     handlePause,
