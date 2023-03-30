@@ -11,6 +11,7 @@ export interface CloudContainerProps extends PropsWithChildren {
   iconOnHover?: boolean;
   isPausable?: boolean;
   item?: CloudElementProps;
+  mouseTracking?: boolean;
   position?: Position;
   radius: number;
   randomPosition?: boolean;
