@@ -14,6 +14,7 @@ export default {
     randomPosition: true,
     isPausable: true,
     iconOnHover: true,
+    mouseTracking: true,
   },
 } as ComponentMeta<typeof CloudContainer>;
 
