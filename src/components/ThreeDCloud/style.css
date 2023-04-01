@@ -41,3 +41,9 @@
 .tdcIsPausable {
   cursor: pointer;
 }
+
+.threed-cloud-container span * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

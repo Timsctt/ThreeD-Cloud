@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CloudElementProps, CloudContainerProps, Position } from '../types';
 
 export function useCloudContainer({
@@ -9,17 +9,26 @@ export function useCloudContainer({
   randomPosition = true,
   isPausable = true,
   iconOnHover = false,
+  mouseTracking = true,
 }: CloudContainerProps) {
   const elements: Array<JSX.Element> = React.Children.toArray(
     children
   ) as Array<JSX.Element>;
   const numberElements = elements.length;
+  const ref = useRef<HTMLDivElement>(null);
 
   const [pause, setPause] = useState<boolean>(false);
+  const [mousePosition, setMousePosition] = useState<Position>({
+    x: -500,
+    y: 0,
+    z: 0,
+  });
 
   // Direction
-  const a = -(Math.min(Math.max(0, -size), size) / radius) * speed;
-  const b = (Math.min(Math.max(-500, -size), size) / radius) * speed;
+  const a =
+    -(Math.min(Math.max(-mousePosition.y, -size), size) / radius) * speed;
+  const b =
+    (Math.min(Math.max(-mousePosition.x, -size), size) / radius) * speed;
   const l = Math.PI / 180;
   const sc = [
     Math.sin(a * l),
@@ -96,6 +105,26 @@ export function useCloudContainer({
     }
   };
 
+  const updateMousePosition = (event: MouseEvent) => {
+    if (ref.current) {
+      const rect = ref.current.getBoundingClientRect();
+      const XClient = (event.clientX - (rect.left + rect.width / 2)) / 5;
+      const YClient = (event.clientY - (rect.top + rect.height / 2)) / 5;
+      setMousePosition({ x: XClient, y: YClient, z: 0 });
+    }
+  };
+
+  useEffect(() => {
+    if (mouseTracking) {
+      document.addEventListener('mousemove', updateMousePosition);
+
+      return () => {
+        document.removeEventListener('mousemove', updateMousePosition);
+      };
+    }
+    return undefined;
+  }, []);
+
   return {
     handlePause,
     pause,
@@ -106,5 +135,6 @@ export function useCloudContainer({
     depth,
     sc,
     elementsList,
+    ref,
   };
 }

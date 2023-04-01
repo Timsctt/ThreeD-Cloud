@@ -17,6 +17,7 @@ export const CloudContainer: React.FunctionComponent<CloudContainerProps> = (
     handlePauseByKey,
     isPausable,
     iconOnHover,
+    ref,
   } = useCloudContainer(props);
 
   return (
@@ -38,6 +39,7 @@ export const CloudContainer: React.FunctionComponent<CloudContainerProps> = (
           width: `${2 * props.radius}px`,
           height: `${2 * props.radius}px`,
         }}
+        ref={ref}
       >
         {elementsList.map((element, elementIndex) => (
           <CloudElement
