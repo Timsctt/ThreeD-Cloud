@@ -18,12 +18,10 @@ export function useCloudContainer({
   const ref = useRef<HTMLDivElement>(null);
 
   const [pause, setPause] = useState<boolean>(false);
-  const [mousePosition, setMousePosition] = useState<{
-    x: number;
-    y: number;
-  }>({
+  const [mousePosition, setMousePosition] = useState<Position>({
     x: -500,
     y: 0,
+    z: 0,
   });
 
   // Direction
@@ -112,7 +110,7 @@ export function useCloudContainer({
       const rect = ref.current.getBoundingClientRect();
       const XClient = (event.clientX - (rect.left + rect.width / 2)) / 5;
       const YClient = (event.clientY - (rect.top + rect.height / 2)) / 5;
-      setMousePosition({ x: XClient, y: YClient });
+      setMousePosition({ x: XClient, y: YClient, z: 0 });
     }
   };
 
