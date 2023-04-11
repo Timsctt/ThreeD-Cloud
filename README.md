@@ -104,7 +104,7 @@ yarn test:watch
 
 ## Contributing
 
-Contributions are always welcome! See [CONTRIBUTING.md](CONTRIBUTING.md 'CONTRIBUTING.md') for ways to get started.
+Contributions are always welcome! See [CONTRIBUTING.md](https://github.com/Timsctt/ThreeD-Cloud/blob/master/CONTRIBUTING.MD 'CONTRIBUTING.md') for ways to get started.
 
 ## License
 
