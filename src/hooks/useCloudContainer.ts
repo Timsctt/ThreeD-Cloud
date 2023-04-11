@@ -123,7 +123,7 @@ export function useCloudContainer({
       };
     }
     return undefined;
-  }, []);
+  }, [mouseTracking]);
 
   return {
     handlePause,
