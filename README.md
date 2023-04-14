@@ -94,7 +94,7 @@ yarn test:watch
 | Props          | Type   | Default | Description                                                 |
 | -------------- | ------ | ------- | ----------------------------------------------------------- |
 | radius         | number | 200     | Determine cloud format. Used for depth calculation          |
-| size           | number | 150     | Size of the square container : size = with = height         |
+| size           | number | 150     | Size of the square container : size = width = height        |
 | speed          | number | 1       | Speed which cloud is animated                               |
 | randomPosition | bool   | true    | Choose randomly a position for elements each time rendering |
 | isPausable     | bool   | true    | Allows you to pause the movement                            |
