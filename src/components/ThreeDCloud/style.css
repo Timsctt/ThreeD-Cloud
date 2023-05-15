@@ -14,27 +14,17 @@
   transform: translate(-50%, -50%);
 }
 
-.tdc-animation-pause,
-.tdc-animation-play {
+.tdc-animation-icon {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50px;
-  opacity: 0.1;
+  opacity: 0;
   transition: 0.3s;
 }
 
-.threed-cloud-container:hover .tdc-animation-pause::before {
-  content: url('/static/media/images/play.svg');
-}
-
-.threed-cloud-container:hover .tdc-animation-play::before {
-  content: url('/static/media/images/pause.svg');
-}
-
-.threed-cloud-container:hover .tdc-animation-pause,
-.threed-cloud-container:hover .tdc-animation-play {
+.threed-cloud-container:hover .tdc-animation-icon {
   opacity: 0.65;
 }
 

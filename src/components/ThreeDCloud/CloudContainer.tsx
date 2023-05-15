@@ -4,6 +4,8 @@ import { CloudContainerProps } from '../../types';
 import CloudElement from './CloudElement';
 
 import './style.css';
+import { Pause } from '../../assets/Pause';
+import { Play } from '../../assets/Play';
 
 export const CloudContainer: React.FunctionComponent<CloudContainerProps> = (
   props: CloudContainerProps
@@ -29,9 +31,9 @@ export const CloudContainer: React.FunctionComponent<CloudContainerProps> = (
       tabIndex={0}
     >
       {isPausable && iconOnHover && (
-        <span
-          className={`${pause ? 'tdc-animation-pause' : 'tdc-animation-play'}`}
-        />
+        <span className="tdc-animation-icon">
+          {pause ? <Play /> : <Pause />}
+        </span>
       )}
       <div
         className={props.className}
