@@ -48,9 +48,9 @@ export function useCloudContainer({
     const phi = Math.sqrt((numberElements + 1) * Math.PI) * theta;
 
     return {
-      x: (size * Math.sin(theta) * Math.cos(phi)) / size,
-      y: size * Math.sin(theta) * Math.sin(phi),
-      z: size * Math.cos(theta),
+      x: (size * Math.sin(theta) * Math.cos(phi)) / 2,
+      y: (size * Math.sin(theta) * Math.sin(phi)) / 2,
+      z: (size * Math.cos(theta)) / 2,
     };
   }
 
