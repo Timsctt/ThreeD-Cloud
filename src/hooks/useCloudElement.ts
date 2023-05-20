@@ -3,11 +3,6 @@ import { CloudElementProps } from '../types/index';
 import { ItemStyle, Position } from '../types';
 
 export function useCloudElement(props: CloudElementProps) {
-  const dimension = {
-    offsetWidth: 50,
-    offsetHeight: 50,
-  };
-
   const [scale, setScale] = useState<number>(1);
   const [per, setPer] = useState<number>(1);
   const [position, setPosition] = useState<Position>(props.position);
@@ -29,8 +24,8 @@ export function useCloudElement(props: CloudElementProps) {
     let alpha = per * per - 0.2;
     alpha = Math.abs(Math.round((alpha > 1 ? 1 : alpha) * 1e3) / 1e3);
 
-    const left = (position.x - dimension.offsetWidth / 2).toFixed(2);
-    const top = (position.y - dimension.offsetHeight / 2).toFixed(2);
+    const left = position.x.toFixed(2);
+    const top = position.y.toFixed(2);
     const transform = `translate3d(calc(-50% + ${left}px), calc(-50% + ${top}px), 0) scale(${scale})`;
 
     return {

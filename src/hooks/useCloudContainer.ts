@@ -29,7 +29,7 @@ export function useCloudContainer({
     -(Math.min(Math.max(-mousePosition.y, -size), size) / radius) * speed;
   const b =
     (Math.min(Math.max(-mousePosition.x, -size), size) / radius) * speed;
-  const l = Math.PI / 180;
+  const l = Math.PI / size;
   const sc = [
     Math.sin(a * l),
     Math.cos(a * l),
@@ -37,12 +37,7 @@ export function useCloudContainer({
     Math.cos(b * l),
   ];
 
-  // rolling depth
-  const depth = 1.5 * radius;
-
-  const elementRandomPosition: Array<Number> = elements.map(
-    (_element, index) => index
-  );
+  const elementRandomPosition: Array<Number> = Array.from(elements.keys());
 
   function computePosition(index: number): Position {
     if (randomPosition)
@@ -53,9 +48,9 @@ export function useCloudContainer({
     const phi = Math.sqrt((numberElements + 1) * Math.PI) * theta;
 
     return {
-      x: (size * Math.sin(theta) * Math.cos(phi)) / 2,
-      y: (size * Math.sin(theta) * Math.sin(phi)) / 2,
-      z: (size * Math.cos(theta)) / 2,
+      x: (size * Math.sin(theta) * Math.cos(phi)) / size,
+      y: size * Math.sin(theta) * Math.sin(phi),
+      z: size * Math.cos(theta),
     };
   }
 
@@ -82,7 +77,7 @@ export function useCloudContainer({
         element.props,
         element.props.children
       ),
-      depth,
+      depth: radius,
       position: computePosition(index),
       size,
       speed,
@@ -132,7 +127,7 @@ export function useCloudContainer({
     isPausable,
     iconOnHover,
     elements,
-    depth,
+    radius,
     sc,
     elementsList,
     ref,

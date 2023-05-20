@@ -12,7 +12,7 @@ export const CloudContainer: React.FunctionComponent<CloudContainerProps> = (
 ) => {
   const {
     sc,
-    depth,
+    radius,
     elementsList,
     handlePause,
     pause,
@@ -38,15 +38,15 @@ export const CloudContainer: React.FunctionComponent<CloudContainerProps> = (
       <div
         className={props.className}
         style={{
-          width: `${2 * props.radius}px`,
-          height: `${2 * props.radius}px`,
+          width: `${2 * props.size}px`,
+          height: `${2 * props.size}px`,
         }}
         ref={ref}
       >
         {elementsList.map((element, elementIndex) => (
           <CloudElement
             key={elementIndex}
-            depth={depth}
+            depth={radius}
             sc={sc}
             position={element.position}
             pause={pause}
