@@ -38,8 +38,8 @@ export const CloudContainer: React.FunctionComponent<CloudContainerProps> = (
       <div
         className={props.className}
         style={{
-          width: `${2 * props.size}px`,
-          height: `${2 * props.size}px`,
+          width: `${props.size}px`,
+          height: `${props.size}px`,
         }}
         ref={ref}
       >
