@@ -126,7 +126,6 @@ export function useCloudContainer({
     handlePauseByKey,
     isPausable,
     iconOnHover,
-    elements,
     radius,
     sc,
     elementsList,
