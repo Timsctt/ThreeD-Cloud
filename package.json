@@ -89,7 +89,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.22.5",
-    "@commitlint/cli": "17.4.2",
+    "@commitlint/cli": "17.6.6",
     "@commitlint/config-conventional": "17.4.2",
     "@ryansonshine/commitizen": "4.2.8",
     "@ryansonshine/cz-conventional-changelog": "3.3.4",
