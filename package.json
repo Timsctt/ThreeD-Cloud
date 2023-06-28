@@ -88,7 +88,7 @@
     "node": ">=14.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.20.12",
+    "@babel/core": "7.22.5",
     "@commitlint/cli": "17.4.2",
     "@commitlint/config-conventional": "17.4.2",
     "@ryansonshine/commitizen": "4.2.8",
