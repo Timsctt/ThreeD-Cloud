@@ -6,12 +6,15 @@ module.exports = {
     '@storybook/addon-controls',
     '@storybook/addon-interactions',
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: 'webpack5',
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
   },
   typescript: {
     check: true,
     reactDocgen: false,
+  },
+  docs: {
+    autodocs: true,
   },
 };
