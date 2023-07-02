@@ -3,6 +3,30 @@ import { renderHook } from '@testing-library/react-hooks';
 import { useCloudElement } from '../src/hooks/useCloudElement';
 
 describe('useCloudElement', () => {
+  test('returns correct style and scale', () => {
+    const props = {
+      position: { x: 0, y: 0, z: 0 },
+      sc: [1, 1, 1, 1],
+      depth: 100,
+      pause: false,
+    };
+
+    const { result, waitForNextUpdate } = renderHook(() =>
+      useCloudElement(props)
+    );
+
+    // Verify initial state
+    expect(result.current.style).toEqual({});
+    expect(result.current.scale).toBe(1);
+
+    // Wait for the first update to occur
+    waitForNextUpdate().then(() => {
+      // Verify updated state
+      expect(result.current.style).toBeDefined();
+      expect(result.current.scale).toBeDefined();
+    });
+  });
+
   it('sets the initial state correctly', () => {
     const props = {
       position: { x: 0, y: 0, z: 0 },
