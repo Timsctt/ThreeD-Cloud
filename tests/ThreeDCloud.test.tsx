@@ -76,4 +76,57 @@ describe('useCloudContainer', () => {
 
     expect(result.current.pause).toBe(false);
   });
+
+  test('updates mouse position on mousemove event', () => {
+    const children = [
+      <div key="1">Element 1</div>,
+      <div key="2">Element 2</div>,
+      <div key="3">Element 3</div>,
+    ];
+
+    const { result } = renderHook(() =>
+      useCloudContainer({
+        children,
+        size: 150,
+        speed: 1,
+        radius: 200,
+        randomPosition: true,
+        isPausable: true,
+        iconOnHover: false,
+        mouseTracking: true,
+      })
+    );
+
+    const mockGetBoundingClientRect = jest.fn(() => ({
+      left: 100,
+      top: 100,
+      width: 200,
+      height: 200,
+    }));
+
+    // Assign the mock object to ref.current
+    act(() => {
+      // Create a new mutable object with mockGetBoundingClientRect
+      const mockRef = {
+        current: {
+          getBoundingClientRect: mockGetBoundingClientRect,
+        },
+      };
+
+      // Assign the new object to result.current.ref.current
+      Object.assign(result.current.ref, mockRef);
+    });
+
+    const mockMouseMoveEvent = new MouseEvent('mousemove', {
+      clientX: 150,
+      clientY: 150,
+    });
+
+    act(() => {
+      // Invoke the updateMousePosition function separately
+      result.current.updateMousePosition(mockMouseMoveEvent);
+    });
+
+    expect(result.current.mousePosition).toEqual({ x: -10, y: -10, z: 0 });
+  });
 });
