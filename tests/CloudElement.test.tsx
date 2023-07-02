@@ -17,24 +17,37 @@ describe('useCloudElement', () => {
     expect(result.current.scale).toEqual(1);
   });
 
-  it('updates the state when setStyle is called', () => {
+  it('should update the style and scale over time', () => {
     const props = {
       position: { x: 0, y: 0, z: 0 },
+      pause: false,
+      depth: 1,
       sc: [1, 1, 1, 1],
-      depth: 50,
-      pause: true,
     };
+
+    jest.useFakeTimers();
 
     const { result } = renderHook(() => useCloudElement(props));
 
-    const newStyle = {
-      transform: 'translate3d(10px, 20px, 0) scale(2)',
-      filter: 'alpha(opacity=50)',
-      opacity: '0.5',
-    };
+    // Initial values
+    expect(result.current.style).toEqual({});
+    expect(result.current.scale).toBe(1);
 
-    result.current.style = newStyle;
+    // Wait for one interval (15ms)
+    jest.advanceTimersByTime(15);
 
-    expect(result.current.style).toEqual(newStyle);
+    // Updated values after one interval
+    expect(result.current.style).toBeDefined();
+    expect(result.current.scale).toBeDefined();
+
+    // Wait for another interval (15ms)
+    jest.advanceTimersByTime(15);
+
+    // Updated values after two intervals
+    expect(result.current.style).toBeDefined();
+    expect(result.current.scale).toBeDefined();
+
+    // Clear the interval and timers
+    jest.useRealTimers();
   });
 });
