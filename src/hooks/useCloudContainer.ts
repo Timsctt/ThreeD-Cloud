@@ -130,5 +130,7 @@ export function useCloudContainer({
     sc,
     elementsList,
     ref,
+    updateMousePosition,
+    mousePosition,
   };
 }
