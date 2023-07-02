@@ -1,69 +1,79 @@
-import { render, screen } from '@testing-library/react';
-import { CloudContainer } from '../src';
-import CloudElement from '../src/components/ThreeDCloud/CloudElement';
 import '@testing-library/jest-dom/extend-expect';
+import React from 'react';
+import { renderHook, act } from '@testing-library/react-hooks';
+import { useCloudContainer } from '../src/hooks/useCloudContainer';
 
-describe('displayCloud', () => {
-  const elements = [
-    { item: <span>Element 1</span>, position: { x: 0, y: 0, z: 0 } },
-    { item: <span>Element 2</span>, position: { x: 100, y: 100, z: 0 } },
-    { item: <span>Element 3</span>, position: { x: -100, y: -100, z: 0 } },
-  ];
-  const radius = 200;
-  const size = 200;
-  const speed = 1;
-  const depth = size * 1.5;
-  const sc: number[] = [];
+describe('useCloudContainer', () => {
+  test('returns correct initial state and event handlers', () => {
+    const children = [
+      <div key="1">Element 1</div>,
+      <div key="2">Element 2</div>,
+      <div key="3">Element 3</div>,
+    ];
 
-  test('renders the component with elements', () => {
-    render(
-      <CloudContainer radius={radius} speed={speed} size={size}>
-        {elements.map((element, index) => (
-          <CloudElement
-            key={index}
-            position={element.position}
-            sc={sc}
-            depth={depth}
-            pause={false}
-          >
-            {element.item}
-          </CloudElement>
-        ))}
-      </CloudContainer>
+    const { result } = renderHook(() =>
+      useCloudContainer({
+        children,
+        size: 150,
+        speed: 1,
+        radius: 200,
+        randomPosition: true,
+        isPausable: true,
+        iconOnHover: false,
+        mouseTracking: true,
+      })
     );
 
-    const element1 = screen.getByText('Element 1');
-    const element2 = screen.getByText('Element 2');
-    const element3 = screen.getByText('Element 3');
-
-    expect(element1).toBeInTheDocument();
-    expect(element2).toBeInTheDocument();
-    expect(element3).toBeInTheDocument();
+    expect(result.current.pause).toBe(false);
+    expect(result.current.handlePause).toBeDefined();
+    expect(result.current.handlePauseByKey).toBeDefined();
+    expect(result.current.isPausable).toBe(true);
+    expect(result.current.iconOnHover).toBe(false);
+    expect(result.current.radius).toBe(200);
+    expect(result.current.sc).toEqual([
+      0, 1, 0.015707317311820672, 0.9998766324816606,
+    ]);
+    expect(result.current.elementsList.length).toBe(3);
+    expect(result.current.ref.current).toBeNull();
   });
 
-  test('test custom className', () => {
-    const { container } = render(
-      <CloudContainer
-        radius={radius}
-        speed={speed}
-        size={size}
-        className="red rounded"
-      >
-        {elements.map((element, index) => (
-          <CloudElement
-            key={index}
-            position={element.position}
-            sc={sc}
-            depth={depth}
-            pause={false}
-          >
-            {element.item}
-          </CloudElement>
-        ))}
-      </CloudContainer>
+  test('toggles pause state when handlePause is called', () => {
+    const children = [
+      <div key="1">Element 1</div>,
+      <div key="2">Element 2</div>,
+      <div key="3">Element 3</div>,
+    ];
+
+    const { result } = renderHook(() =>
+      useCloudContainer({
+        children,
+        size: 150,
+        speed: 1,
+        radius: 200,
+        randomPosition: true,
+        isPausable: true,
+        iconOnHover: false,
+        mouseTracking: true,
+      })
     );
 
-    expect(container.firstChild?.firstChild).toHaveClass('red');
-    expect(container.firstChild?.firstChild).toHaveClass('rounded');
+    const spaceKeyEvent = {
+      code: 'Space',
+      key: ' ',
+    } as React.KeyboardEvent<HTMLDivElement>;
+
+    expect(result.current.pause).toBe(false);
+
+    act(() => {
+      result.current.handlePauseByKey(spaceKeyEvent);
+    });
+
+    expect(result.current.pause).toBe(true);
+
+    act(() => {
+      result.current.handlePauseByKey(spaceKeyEvent);
+    });
+
+    expect(result.current.pause).toBe(false);
   });
 });
