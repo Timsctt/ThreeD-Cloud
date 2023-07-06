@@ -1,7 +1,7 @@
 {
   "name": "@timsctt/threed-cloud",
   "description": "React module for create a cloud of React Nodes",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "author": "Timothée Schmitt",
   "license": "MIT",
   "repository": {
@@ -154,8 +154,5 @@
     "parse-url": ">=8.1.0",
     "trim": ">=0.0.3",
     "trim-newlines": ">=3.0.1"
-  },
-  "dependencies": {
-    "fork-ts-checker-webpack-plugin": "8.0.0"
   }
 }
