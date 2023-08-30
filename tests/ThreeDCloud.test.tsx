@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useCloudContainer } from '../src/hooks/useCloudContainer';
